@@ -1,0 +1,2 @@
+Build image and run container: sh run.sh
+Test API: python3 request_api.py

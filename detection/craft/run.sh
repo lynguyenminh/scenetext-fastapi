@@ -18,4 +18,4 @@ fi
 docker build -t craft_scenetext_orai:v1 .
 
 # run 
-docker run -it --name craft_container_orai_v2 -v $(pwd):/craft craft_scenetext_orai:v1
+docker run -it --name craft_container_orai_v2 -p 4002:4002 craft_scenetext_orai:v1

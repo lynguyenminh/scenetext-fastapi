@@ -17,7 +17,7 @@ ENV PATH="/usr/bin/python3.8:${PATH}"
 
 
 # Install other dependencies
-RUN pip3 install --upgrapyde pip
+RUN pip3 install --upgrade pip
 
 COPY . /craft
 WORKDIR /craft
@@ -25,3 +25,8 @@ WORKDIR /craft
 RUN pip3 install -r requirements.txt
 RUN apt-get install -y libgl1-mesa-glx 
 RUN ldconfig
+RUN pip3 install "fastapi[all]"
+
+EXPOSE 4002
+
+CMD ["uvicorn", "api:app", "--reload", "--host", "0.0.0.0", "--port", "4002"]

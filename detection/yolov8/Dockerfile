@@ -24,10 +24,10 @@ RUN pip3 install opencv-python-headless \
 RUN pip3 install "fastapi[all]"
 
 
-# COPY . /api
+COPY . /yolov8
 
-# WORKDIR /api
+WORKDIR /yolov8
 
-# EXPOSE 4001
+EXPOSE 4001
 
-# CMD ["uvicorn", "src.yolov8.api:app", "--reload", "--host", "0.0.0.0", "--port", "4001"]
+CMD ["uvicorn", "api:app", "--reload", "--host", "0.0.0.0", "--port", "4001"]

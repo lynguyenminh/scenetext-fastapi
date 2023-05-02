@@ -20,13 +20,13 @@ class parseq_text_recognition:
         return parseq, img_transform
     
     def predict(self, image):
-        image = Image.open(image).convert('RGB')
+        # image = Image.open(image).convert('RGB')
         image = self.img_transform(image).unsqueeze(0).to(self.device)
 
         p = self.parseq(image).softmax(-1)
         pred, p = self.parseq.tokenizer.decode(p)
 
-        return (pred[0], statistics.mean(p[0].tolist()))
+        return pred[0]
     
     
 if __name__=="__main__":

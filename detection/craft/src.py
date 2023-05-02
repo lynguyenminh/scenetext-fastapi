@@ -108,14 +108,25 @@ class craft_text_detection:
 
         return polys
 
-    def predict(self, image_path):
-        image = imgproc.loadImage(image_path)
-        polys = self.feed_forward(image)
+    def inference(self, image_path):
+        image_path = imgproc.loadImage(image_path)
+        polys = self.feed_forward(image_path)
         polys = [i.tolist() for i in polys]
         polys = [[[int(num) for num in sublist] for sublist in inner_list] for inner_list in polys]
-        return polys
+
+        boxes = []
+        for box in polys: 
+            x_coordinates, y_coordinates = zip(*box)
+            top = min(y_coordinates)
+            left = min(x_coordinates)
+            bot = max(y_coordinates)
+            right = max(x_coordinates)
+
+            boxes.append([left, top, right, bot])
+
+        return boxes
 
 
 if __name__=="__main__":
     craft_instance = craft_text_detection()
-    print(craft_instance.predict('test-case.jpg'))
+    print(craft_instance.inference('test-case.jpg'))

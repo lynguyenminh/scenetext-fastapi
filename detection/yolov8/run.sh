@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Đặt tên container cần kiểm tra/xóa vào biến $container_name
-container_name="parseq_container_orai_v1"
+container_name="yolov8_container_orai_v1"
 
 # Kiểm tra xem container đã tồn tại hay chưa
 if docker ps -a --format '{{.Names}}' | grep -Eq "^${container_name}\$"; then
@@ -15,7 +15,7 @@ else
 fi
 
 # buiild
-# docker build -t parseq_scenetext_orai:v1 .
+docker build -t yolov8_scenetext_orai:v1 .
 
 # run 
-docker run -it --name parseq_container_orai_v1 -p 4003:4003 -v $(pwd):/parseq parseq_scenetext_orai:v1
+docker run -it --name yolov8_container_orai_v1 -p 4001:4001 yolov8_scenetext_orai:v1

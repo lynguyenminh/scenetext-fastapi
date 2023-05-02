@@ -22,15 +22,19 @@ RUN pip3 install --upgrade pip
 
 
 
-COPY . /parseq
+COPY . /vietocr
 
-WORKDIR /parseq
+WORKDIR /vietocr
 
+# RUN pip3 install torch==1.8.0 torchvision 
+
+# RUN pip3 install --quiet vietocr
+
+# RUN pip3 install opencv-python pyyaml
 RUN pip3 install -r requirements.txt
 
 RUN pip3 install "fastapi[all]"
 
+EXPOSE 4004
 
-EXPOSE 4003
-
-CMD ["uvicorn", "api:app", "--reload", "--host", "0.0.0.0", "--port", "4003"]
+CMD ["uvicorn", "api:app", "--reload", "--host", "0.0.0.0", "--port", "4004"]
