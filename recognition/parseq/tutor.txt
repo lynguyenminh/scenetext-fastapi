@@ -1,2 +1,5 @@
 Build image and run container: sh run.sh
 Test API: python3 request_api.py
+
+
+docker run -it --name parseq_test -p 4003:4003 -v ./:/parseq parseq_scenetext_orai:v1 /bin/bash

@@ -71,7 +71,7 @@ class craft_text_detection:
             new_state_dict[name] = v
         return new_state_dict
 
-    def feed_forward(self, image):
+    def feed_forward(self, image, threshold):
         # resize
         img_resized, target_ratio, _ = imgproc.resize_aspect_ratio(image, canvas_size, interpolation=cv2.INTER_LINEAR, mag_ratio=mag_ratio)
         ratio_h = ratio_w = 1 / target_ratio
@@ -98,7 +98,7 @@ class craft_text_detection:
             score_link = y_refiner[0,:,:,0].cpu().data.numpy()
 
         # Post-processing
-        boxes, polys = craft_utils.getDetBoxes(score_text, score_link, text_threshold, link_threshold, low_text, poly)
+        boxes, polys = craft_utils.getDetBoxes(score_text, score_link, threshold, link_threshold, low_text, poly)
 
         # coordinate adjustment
         boxes = craft_utils.adjustResultCoordinates(boxes, ratio_w, ratio_h)
@@ -108,9 +108,9 @@ class craft_text_detection:
 
         return polys
 
-    def inference(self, image_path):
+    def inference(self, image_path, threshold=0.7):
         image_path = imgproc.loadImage(image_path)
-        polys = self.feed_forward(image_path)
+        polys = self.feed_forward(image_path, threshold=threshold)
         polys = [i.tolist() for i in polys]
         polys = [[[int(num) for num in sublist] for sublist in inner_list] for inner_list in polys]
 

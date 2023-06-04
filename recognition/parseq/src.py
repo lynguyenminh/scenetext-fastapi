@@ -10,7 +10,7 @@ from strhub.models.utils import load_from_checkpoint
 class parseq_text_recognition: 
     def __init__(self):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.trained_model = 'parseq_model.ckpt'
+        self.trained_model = 'best_parseq.ckpt'
         self.parseq, self.img_transform = self._load_model()
         self.threshold = 0.7
         
@@ -29,6 +29,6 @@ class parseq_text_recognition:
         return pred[0]
     
     
-if __name__=="__main__":
-    parseq_instance = parseq_text_recognition()
-    print(parseq_instance.predict('test-case.png'))
+# if __name__=="__main__":
+#     parseq_instance = parseq_text_recognition()
+#     print(parseq_instance.predict('test-case.png'))

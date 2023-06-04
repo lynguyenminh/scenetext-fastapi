@@ -16,7 +16,7 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
 ENV PATH="/usr/bin/python3.8:${PATH}"
 
 
-# Install other dependencies
+scenetext-v1/detection/yolov8/api.py# Install other dependencies
 RUN pip3 install --upgrade pip
 
 COPY . /craft

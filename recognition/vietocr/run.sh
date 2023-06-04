@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# copy weight
+cp -r ../../weights/rec/VietOCR-best.pth .
+
 # Đặt tên container cần kiểm tra/xóa vào biến $container_name
 container_name="vietocr_container_orai_v1"
 
@@ -15,7 +19,7 @@ else
 fi
 
 # buiild
-# docker build -t vietocr_scenetext_orai:v1 .
+docker build -t vietocr_scenetext_orai:v1 .
 
 # run 
-docker run -it --name vietocr_container_orai_v1 -p 4004:4004 -v $(pwd):/vietocr vietocr_scenetext_orai:v1
+# docker run -it --name vietocr_container_orai_v1 -p 4004:4004 -v $(pwd):/vietocr vietocr_scenetext_orai:v1

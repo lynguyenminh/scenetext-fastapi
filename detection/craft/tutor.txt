@@ -1,2 +1,6 @@
 Build image and run container: sh run.sh
 Then, test API by: python3 request_api.py
+
+
+
+docker run -it --name craft_test4 -p 4002:4002 -v ./:/craft craft_scenetext_orai:v1 /bin/bash

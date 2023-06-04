@@ -13,8 +13,8 @@ craft_instance = craft_text_detection()
 
 
 @app.post("/api/detection/craft/")
-async def create_upload_file(file: UploadFile = File(...)):
+async def create_upload_file(file: UploadFile = File(...), threshold: float = 0.5):
     contents = await file.read()
     image = Image.open(BytesIO(contents)).convert('L') # convert to grayscale 
-    boxes = craft_instance.inference(image_path=image)
+    boxes = craft_instance.inference(image_path=image, threshold=threshold)
     return {"boxes": boxes}

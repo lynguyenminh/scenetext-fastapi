@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# copy weight
+cp -r ../../weights/detect/craft_mlt_25k.pth .
+
 # Đặt tên container cần kiểm tra/xóa vào biến $container_name
 container_name="craft_container_orai_v2"
 

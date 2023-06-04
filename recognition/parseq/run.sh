@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# copy weight
+cp -r ../../weights/rec/best_parseq.ckpt .
+
 # Đặt tên container cần kiểm tra/xóa vào biến $container_name
 container_name="parseq_container_orai_v1"
 

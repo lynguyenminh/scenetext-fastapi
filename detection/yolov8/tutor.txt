@@ -1,2 +1,7 @@
 build image and run container: sh run.sh
 test api: python3 request_api.py
+
+
+# chay container yolo
+docker run -it --name test_yolov8_dockerimage2 -p 4001:4001 -v ./:/yolov8 yolov8_scenetext_orai:v1
+ouput: {'boxes': [[21, 109, 145, 230], [310, 68, 611, 192], [320, 210, 475, 246], [489, 197, 629, 237], [107, 12, 142, 31], [74, 11, 106, 31], [244, 114, 291, 145], [132, 34, 172, 50], [68, 35, 131, 50]]}
